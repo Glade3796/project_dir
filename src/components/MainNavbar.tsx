@@ -6,7 +6,12 @@ import {
 	DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import cyber_tree from "@/assets/cyber_tree.svg";
+import { projectList } from "@/app/data/projectList";
+
+interface ProjectList {
+	name: string;
+}
+
 interface MainNavbarProps {
 	props?: string;
 	className?: string;
@@ -38,18 +43,16 @@ export function MainNavbar() {
 						<div className='flex flex-col gap-6'>
 							<DropdownMenuItem>
 								<Link
-									href='#'
+									href='/'
 									className='text-sm font-medium transition-colors hover:text-primary'
-									prefetch={false}
 								>
 									Home
 								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem>
 								<Link
-									href='#'
+									href='/about'
 									className='text-sm font-medium transition-colors hover:text-primary'
-									prefetch={false}
 								>
 									About
 								</Link>
@@ -58,7 +61,7 @@ export function MainNavbar() {
 								<DropdownMenu>
 									<DropdownMenuTrigger asChild>
 										<Link
-											href='#'
+											href='/projects'
 											className='text-sm font-medium transition-colors hover:text-primary flex items-center justify-between'
 											prefetch={false}
 										>
