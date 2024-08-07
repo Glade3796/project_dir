@@ -8,9 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { projectList } from "@/app/data/projectList";
 
-interface ProjectList {
-	name: string;
-}
+import { ProjectList } from "@/app/types/type";
 
 interface MainNavbarProps {
 	props?: string;
@@ -18,6 +16,8 @@ interface MainNavbarProps {
 }
 
 export function MainNavbar() {
+	const list: ProjectList[] = projectList;
+	console.log(list);
 	return (
 		<header className='bg-background sticky top-0 z-40 w-full border-b'>
 			<div className='container flex h-16 items-center justify-between px-4 sm:px-6 md:px-8'>
@@ -76,31 +76,30 @@ export function MainNavbar() {
 										<div className='flex flex-col gap-2'>
 											<DropdownMenuItem>
 												<Link
-													href='#'
+													href={{
+														pathname: "/projects",
+														query: { project: "all" },
+													}}
 													className='text-sm font-medium transition-colors hover:text-primary'
 													prefetch={false}
 												>
-													Project 1
+													- ALL PROJECTS -
 												</Link>
 											</DropdownMenuItem>
-											<DropdownMenuItem>
-												<Link
-													href='#'
-													className='text-sm font-medium transition-colors hover:text-primary'
-													prefetch={false}
-												>
-													Project 2
-												</Link>
-											</DropdownMenuItem>
-											<DropdownMenuItem>
-												<Link
-													href='#'
-													className='text-sm font-medium transition-colors hover:text-primary'
-													prefetch={false}
-												>
-													Project 3
-												</Link>
-											</DropdownMenuItem>
+											{list.map((project: ProjectList) => (
+												<DropdownMenuItem>
+													<Link
+														href={{
+															pathname: "/projects",
+															query: { project: project.queryParam },
+														}}
+														className='text-sm font-medium transition-colors hover:text-primary'
+														prefetch={false}
+													>
+														{project.name}
+													</Link>
+												</DropdownMenuItem>
+											))}
 										</div>
 									</DropdownMenuContent>
 								</DropdownMenu>
@@ -119,14 +118,14 @@ export function MainNavbar() {
 				</DropdownMenu>
 				<nav className='hidden items-center gap-6 md:flex'>
 					<Link
-						href='#'
+						href='/'
 						className='text-sm font-medium transition-colors hover:text-primary'
 						prefetch={false}
 					>
 						Home
 					</Link>
 					<Link
-						href='#'
+						href='/about'
 						className='text-sm font-medium transition-colors hover:text-primary'
 						prefetch={false}
 					>
@@ -135,7 +134,7 @@ export function MainNavbar() {
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<Link
-								href='#'
+								href='/projects'
 								className='text-sm font-medium transition-colors hover:text-primary flex items-center gap-1'
 								prefetch={false}
 							>
@@ -150,31 +149,30 @@ export function MainNavbar() {
 							<div className='flex flex-col gap-2'>
 								<DropdownMenuItem>
 									<Link
-										href='#'
+										href={{
+											pathname: "/projects",
+											query: { project: "all" },
+										}}
 										className='text-sm font-medium transition-colors hover:text-primary'
 										prefetch={false}
 									>
-										Project 1
+										- ALL PROJECTS -
 									</Link>
 								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<Link
-										href='#'
-										className='text-sm font-medium transition-colors hover:text-primary'
-										prefetch={false}
-									>
-										Project 2
-									</Link>
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<Link
-										href='#'
-										className='text-sm font-medium transition-colors hover:text-primary'
-										prefetch={false}
-									>
-										Project 3
-									</Link>
-								</DropdownMenuItem>
+								{list.map((project: ProjectList) => (
+									<DropdownMenuItem>
+										<Link
+											href={{
+												pathname: "/projects",
+												query: { project: project.queryParam },
+											}}
+											className='text-sm font-medium transition-colors hover:text-primary'
+											prefetch={false}
+										>
+											{project.name}
+										</Link>
+									</DropdownMenuItem>
+								))}
 							</div>
 						</DropdownMenuContent>
 					</DropdownMenu>
