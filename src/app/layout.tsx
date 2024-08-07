@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Inter  } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Unbounded as FontSans } from "next/font/google";
 
 import "./styles/globals.css";
 import Navbar from "../components/Navbar";
 
 import { cn } from "@/lib/utils";
+import { MainNavbar } from "@/components/MainNavbar";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
@@ -28,7 +29,7 @@ export default function RootLayout({
 					fontSans.variable
 				)}
 			>
-				<Navbar />
+				<MainNavbar />
 				{children}
 			</body>
 		</html>
