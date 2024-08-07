@@ -4,7 +4,7 @@ export const projectList: ProjectList[] = [
 	{
 		id: 1,
 		queryParam: "yet-another-social-media-app",
-		name: "Social Media App",
+		name: "Yet Another Social Media App",
 		description:
 			"Social media app that allows users to post, like, and comment on posts.",
 		functioning: false,
