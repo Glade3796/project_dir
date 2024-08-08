@@ -59,6 +59,7 @@ const config = {
 				sm: "calc(var(--radius) - 4px)",
 				full: " 9999px",
 			},
+			fontWeight: { bold: "700", normal: "400" },
 			keyframes: {
 				"accordion-down": {
 					from: { height: "0" },
@@ -110,6 +111,8 @@ const config = {
 			},
 			red: { DEFAULT: "#ff0000" },
 			green: { DEFAULT: "#00ff00" },
+			yellow: { DEFAULT: "#ffff00" },
+			mustard: { DEFAULT: "#ffdb58" },
 		},
 		borderRadius: {
 			lg: "var(--radius)",

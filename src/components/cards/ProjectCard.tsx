@@ -12,10 +12,49 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { ProjectList } from "@/app/types/type";
 import { Router } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+	TooltipProvider,
+	Tooltip,
+	TooltipTrigger,
+	TooltipContent,
+} from "@/components/ui/tooltip";
+import { useState } from "react";
 
 export function ProjectCard(props: { data: ProjectList }) {
+	const router = useRouter();
+	const searchParams = useSearchParams();
 	const { data } = props;
-	function handleClose() {}
+
+	const [activeNoteId, setActiveNoteId] = useState<number[]>([]);
+
+	const progress =
+		data.progress == 100
+			? "text-sm font-medium text-green"
+			: data.progress < 76
+			? "text-sm font-medium text-mustard"
+			: "text-sm font-medium";
+	const modifiedUrl = data.url.replace(/^https:\/\//, "");
+	const modifiedGithub = data.github.replace(/^https:\/\/github.com\//, "");
+	function handleClose() {
+		router.push("/projects");
+	}
+	function handleTechClick(tech: string) {
+		router.push(`/projects?tech=${tech}`);
+	}
+	const pathname = usePathname();
+	const handleIconClick = (id: number) => {
+		setActiveNoteId((prevActiveNoteId) => {
+			if (prevActiveNoteId.includes(id)) {
+				// If the id is already in the array, remove it
+				return prevActiveNoteId.filter((noteId) => noteId !== id);
+			} else {
+				// If the id is not in the array, add it
+				return [...prevActiveNoteId, id];
+			}
+		});
+	};
+
 	return (
 		<Card className='relative w-full max-w-md animate-fade-in'>
 			<Button
@@ -66,38 +105,39 @@ export function ProjectCard(props: { data: ProjectList }) {
 				<div className='grid gap-2'>
 					<div className='flex items-center justify-between'>
 						<span className='text-sm font-medium'>Progress</span>
-						<span className='text-sm font-medium'>85%</span>
+						<span className={progress}>{data.progress}%</span>
 					</div>
-					<Progress value={85} className='h-2 rounded-full' />
+					<Progress value={data.progress} className='h-2 rounded-full' />
 				</div>
 				<div className='grid gap-2'>
 					<div className='flex items-center justify-between'>
 						<span className='text-sm font-medium'>Description</span>
 					</div>
-					<p className='text-sm text-muted-foreground'>
-						This is a social media app that allows users to connect with
-						friends, share updates, and engage with content.
-					</p>
+					<p className='text-sm text-muted-foreground'>{data.description}</p>
 				</div>
 				<div className='grid gap-2'>
 					<div className='flex items-center justify-between'>
 						<span className='text-sm font-medium'>Live App</span>
 						<Link
-							href='#'
+							href={data.url}
 							className='text-sm text-primary underline'
 							prefetch={false}
+							target='_blank'
+							rel='noopener noreferrer'
 						>
-							example.com
+							{modifiedUrl}
 						</Link>
 					</div>
 					<div className='flex items-center justify-between'>
 						<span className='text-sm font-medium'>GitHub</span>
 						<Link
-							href='#'
+							href={data.github}
 							className='text-sm text-primary underline'
 							prefetch={false}
+							target='_blank'
+							rel='noopener noreferrer'
 						>
-							example/app
+							{modifiedGithub}
 						</Link>
 					</div>
 				</div>
@@ -106,10 +146,17 @@ export function ProjectCard(props: { data: ProjectList }) {
 						<span className='text-sm font-medium'>Technologies</span>
 					</div>
 					<div className='flex flex-wrap gap-2'>
-						<Badge>React</Badge>
-						<Badge>Node.js</Badge>
-						<Badge>MongoDB</Badge>
-						<Badge>GraphQL</Badge>
+						{data.tech.map((tech, id) => (
+							<Badge
+								className='cursor-pointer'
+								onClick={() => {
+									handleTechClick(tech);
+								}}
+								key={id + tech}
+							>
+								{tech}
+							</Badge>
+						))}
 					</div>
 				</div>
 				<div className='grid gap-2'>
@@ -119,13 +166,13 @@ export function ProjectCard(props: { data: ProjectList }) {
 					<div className='flex flex-col gap-1'>
 						<div className='flex items-center justify-between'>
 							<span className='text-sm text-muted-foreground'>Start Date</span>
-							<span className='text-sm'>January 1, 2023</span>
+							<span className='text-sm'>{data.started}</span>
 						</div>
 						<div className='flex items-center justify-between'>
 							<span className='text-sm text-muted-foreground'>
 								Completion Date
 							</span>
-							<span className='text-sm'>June 30, 2023</span>
+							<span className='text-sm'>{data.completed}</span>
 						</div>
 					</div>
 				</div>
@@ -134,7 +181,7 @@ export function ProjectCard(props: { data: ProjectList }) {
 						<span className='text-sm font-medium'>Screenshot</span>
 					</div>
 					<img
-						src='/placeholder.svg'
+						src={data.screenshot}
 						alt='App Screenshot'
 						width='400'
 						height='200'
@@ -147,24 +194,42 @@ export function ProjectCard(props: { data: ProjectList }) {
 						<span className='text-sm font-medium'>Notes</span>
 					</div>
 					<div className='flex flex-col gap-1'>
-						<div className='flex items-center justify-between'>
-							<span className='text-sm text-muted-foreground'>Note 1</span>
-							<Button variant='ghost' size='icon'>
-								<InfoIcon className='w-4 h-4' />
-							</Button>
+						{/* Row of icons */}
+						<div className='flex gap-2'>
+							{data.note?.map((note, id) => (
+								<TooltipProvider key={note.id}>
+									<Tooltip>
+										<TooltipTrigger
+											onClick={() => handleIconClick(note.id)}
+											className='relative cursor-pointer'
+										>
+											<InfoIcon className='w-4 h-4' />
+											<TooltipContent className='absolute top-0 left-full ml-2'>
+												<span className='font-bold'>{note.title}</span>
+												<br />
+												<span>{note.date}</span>
+											</TooltipContent>
+										</TooltipTrigger>
+									</Tooltip>
+								</TooltipProvider>
+							))}
 						</div>
-						<div className='flex items-center justify-between'>
-							<span className='text-sm text-muted-foreground'>Note 2</span>
-							<Button variant='ghost' size='icon'>
-								<InfoIcon className='w-4 h-4' />
-							</Button>
-						</div>
-						<div className='flex items-center justify-between'>
-							<span className='text-sm text-muted-foreground'>Note 3</span>
-							<Button variant='ghost' size='icon'>
-								<InfoIcon className='w-4 h-4' />
-							</Button>
-						</div>
+
+						{/* Display the active note */}
+
+						{data.note
+							?.filter((note) => activeNoteId.includes(note.id))
+							.map((note, id) => (
+								<div key={id} className='flex flex-col gap-1'>
+									<div className='flex items-center justify-between'>
+										<span className='text-sm font-medium'>{note.title}</span>
+										<span className='text-sm text-muted-foreground'>
+											{!!note.date ? `(@${note.date})` : ""}
+										</span>
+									</div>
+									<div className='text-sm'>{note.text}</div>
+								</div>
+							))}
 					</div>
 				</div>
 			</CardContent>
@@ -220,24 +285,6 @@ function CircleCheckIcon(props: React.SVGProps<SVGSVGElement>) {
 	);
 }
 
-function MinusIcon(props: React.SVGProps<SVGSVGElement>) {
-	return (
-		<svg
-			{...props}
-			xmlns='http://www.w3.org/2000/svg'
-			width='24'
-			height='24'
-			viewBox='0 0 24 24'
-			fill='none'
-			stroke='red'
-			strokeWidth='2'
-			strokeLinecap='round'
-			strokeLinejoin='round'
-		>
-			<path d='M5 12h14' />
-		</svg>
-	);
-}
 function InfoIcon(props: React.SVGProps<SVGSVGElement>) {
 	return (
 		<svg
