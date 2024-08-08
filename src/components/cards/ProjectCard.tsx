@@ -32,12 +32,17 @@ export function ProjectCard(props: { data: ProjectList }) {
 			</CardHeader>
 			<CardContent className='grid gap-4'>
 				<div className='flex items-center justify-between'>
-					<div className='flex items-center gap-2'>
-						<CircleCheckIcon className='w-5 h-5 text-green-500' />
-						<span className='text-sm font-medium'>
-							{data.functioning ? "Live" : "Down"}
-						</span>
-					</div>
+					{data.functioning ? (
+						<div className='flex items-center gap-2'>
+							<CircleCheckIcon className='w-5 h-5 green-500' />
+							<span className='text-sm font-medium'>Live</span>
+						</div>
+					) : (
+						<div className='flex items-center gap-2'>
+							<MinusIcon className='w-5 h-5 green-500' />
+							<span className='text-sm font-medium'>Down</span>
+						</div>
+					)}
 					<div className='flex items-center gap-2'>
 						<CalendarDaysIcon className='w-5 h-5 text-muted-foreground' />
 						<span className='text-sm text-muted-foreground'>
@@ -191,7 +196,7 @@ function CircleCheckIcon(props: React.SVGProps<SVGSVGElement>) {
 			height='24'
 			viewBox='0 0 24 24'
 			fill='none'
-			stroke='green'
+			stroke='#00FF00'
 			strokeWidth='2'
 			strokeLinecap='round'
 			strokeLinejoin='round'
@@ -211,7 +216,7 @@ function MinusIcon(props: React.SVGProps<SVGSVGElement>) {
 			height='24'
 			viewBox='0 0 24 24'
 			fill='none'
-			stroke='currentColor'
+			stroke='red'
 			strokeWidth='2'
 			strokeLinecap='round'
 			strokeLinejoin='round'
