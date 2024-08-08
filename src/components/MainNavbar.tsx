@@ -1,3 +1,4 @@
+// MainNavbar component is a navigation bar that displays links to different pages of the application. It also contains a dropdown menu for the Projects page, which displays a list of project categories.
 import Link from "next/link";
 import {
 	DropdownMenu,
@@ -6,18 +7,13 @@ import {
 	DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { projectList } from "@/app/data/projectList";
+import { projectList } from "@/app/.data/projectList";
 
 import { ProjectList } from "@/app/types/type";
 
-interface MainNavbarProps {
-	props?: string;
-	className?: string;
-}
-
 export function MainNavbar() {
 	const list: ProjectList[] = projectList;
-	console.log(list);
+
 	return (
 		<header className='bg-background sticky top-0 z-40 w-full border-b'>
 			<div className='container flex h-16 items-center justify-between px-4 sm:px-6 md:px-8'>
@@ -210,7 +206,7 @@ export function MainNavbar() {
 // 	);
 // }
 
-function ChevronDownIcon(props: MainNavbarProps) {
+function ChevronDownIcon(props: React.SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
@@ -229,7 +225,7 @@ function ChevronDownIcon(props: MainNavbarProps) {
 	);
 }
 
-function ChevronRightIcon(props: MainNavbarProps) {
+function ChevronRightIcon(props: React.SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}
@@ -248,7 +244,7 @@ function ChevronRightIcon(props: MainNavbarProps) {
 	);
 }
 
-function MenuIcon(props: MainNavbarProps) {
+function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
 	return (
 		<svg
 			{...props}

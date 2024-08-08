@@ -5,7 +5,7 @@ export interface ProjectList {
 	name: string;
 	description: string;
 	functioning: boolean; // Consider using a more specific type if possible
-	note: string;
+	note?: notes[];
 	progress: number;
 	image: string;
 	url: string;
@@ -16,6 +16,7 @@ export interface ProjectList {
 	completed: string;
 	screenshot: string;
 }
+type notes = { id: number; title: string; text: string; date?: string };
 
 export interface ButtonVariantProps {
 	variant:

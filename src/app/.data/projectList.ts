@@ -4,12 +4,12 @@ export const projectList: ProjectList[] = [
 	{
 		id: 1,
 		queryParam: "yet-another-social-media-app",
-		name: "Social Media App",
+		name: "Yet Another Social Media App",
 		description:
 			"Social media app that allows users to post, like, and comment on posts.",
-		functioning: false,
-		note: "Vercel down",
-		progress: 100,
+		functioning: true,
+		note: [{ id: 1, title: "Vercel down", text: "Vercel down" }],
+		progress: 50,
 		image: "Project Image",
 		url: "https://yet-another-social-media-app.vercel.app/",
 		github: "https://github.com/Glade3796/yet-another-social-media-app",
@@ -17,7 +17,7 @@ export const projectList: ProjectList[] = [
 		lastUpdate: "2021-09-01",
 		started: "2021-08-01",
 		completed: "2021-09-01",
-		screenshot: "https://i.imgur.com/1Q5Z2Zz.png",
+		screenshot: "/placeholder.svg",
 	},
 	{
 		id: 2,
@@ -26,7 +26,10 @@ export const projectList: ProjectList[] = [
 		description:
 			"Full Stack react app that allows users to post, like, and comment on posts.",
 		functioning: false,
-		note: "Vercel down",
+		note: [
+			{ id: 1, title: "Vercel down", text: "Vercel down" },
+			{ id: 2, title: "issues", text: "issues" },
+		],
 		progress: 100,
 		image: "Project Image",
 		url: "https://lforum.onrender.com/",
@@ -35,6 +38,6 @@ export const projectList: ProjectList[] = [
 		lastUpdate: "2021-09-01",
 		started: "2021-08-01",
 		completed: "2021-09-01",
-		screenshot: "https://i.imgur.com/1Q5Z2Zz.png",
+		screenshot: "/placeholder.svg",
 	},
 ];
