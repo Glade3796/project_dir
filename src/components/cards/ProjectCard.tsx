@@ -4,18 +4,28 @@ import {
 	CardTitle,
 	CardDescription,
 	CardContent,
+	CardFooter,
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { ProjectList } from "@/app/types/type";
+import { Router } from "lucide-react";
 
 export function ProjectCard(props: { data: ProjectList }) {
 	const { data } = props;
-
+	function handleClose() {}
 	return (
-		<Card className='w-full max-w-md animate-fade-in'>
+		<Card className='relative w-full max-w-md animate-fade-in'>
+			<Button
+				variant='ghost'
+				size='icon'
+				className='absolute top-4 right-4'
+				onClick={handleClose}
+			>
+				<XIcon className='w-4 h-4' />
+			</Button>
 			<CardHeader className='flex items-center gap-4'>
 				<img
 					src='/placeholder.svg'
@@ -30,17 +40,20 @@ export function ProjectCard(props: { data: ProjectList }) {
 					<CardDescription>{data.description}</CardDescription>
 				</div>
 			</CardHeader>
+
 			<CardContent className='grid gap-4'>
-				<div className='flex items-center justify-between'>
+				<div className='flex items-center justify-between text-red-400'>
 					{data.functioning ? (
 						<div className='flex items-center gap-2'>
-							<CircleCheckIcon className='w-5 h-5 green-500' />
-							<span className='text-sm font-medium'>Live</span>
+							<CircleCheckIcon className='w-5 h-5 text-green' />
+							<span className='text-sm font-medium text-green'>Live</span>
 						</div>
 					) : (
-						<div className='flex items-center gap-2'>
-							<MinusIcon className='w-5 h-5 green-500' />
-							<span className='text-sm font-medium'>Down</span>
+						<div className='flex items-center gap-2 '>
+							<CircleOffIcon className='w-5 h-5 ' />
+							<span className='!important text-sm font-medium text-red '>
+								Down
+							</span>
 						</div>
 					)}
 					<div className='flex items-center gap-2'>
@@ -242,6 +255,45 @@ function InfoIcon(props: React.SVGProps<SVGSVGElement>) {
 			<circle cx='12' cy='12' r='10' />
 			<path d='M12 16v-4' />
 			<path d='M12 8h.01' />
+		</svg>
+	);
+}
+function XIcon(props: React.SVGProps<SVGSVGElement>) {
+	return (
+		<svg
+			{...props}
+			xmlns='http://www.w3.org/2000/svg'
+			width='24'
+			height='24'
+			viewBox='0 0 24 24'
+			fill='none'
+			stroke='currentColor'
+			strokeWidth='2'
+			strokeLinecap='round'
+			strokeLinejoin='round'
+		>
+			<path d='M18 6 6 18' />
+			<path d='m6 6 12 12' />
+		</svg>
+	);
+}
+function CircleOffIcon(props: React.SVGProps<SVGSVGElement>) {
+	return (
+		<svg
+			{...props}
+			xmlns='http://www.w3.org/2000/svg'
+			width='24'
+			height='24'
+			viewBox='0 0 24 24'
+			fill='none'
+			stroke='red'
+			stroke-width='2'
+			stroke-linecap='round'
+			stroke-linejoin='round'
+		>
+			<path d='m2 2 20 20' />
+			<path d='M8.35 2.69A10 10 0 0 1 21.3 15.65' />
+			<path d='M19.08 19.08A10 10 0 1 1 4.92 4.92' />
 		</svg>
 	);
 }

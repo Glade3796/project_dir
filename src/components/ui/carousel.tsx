@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import useEmblaCarousel, {
 	type UseEmblaCarouselType,
@@ -38,7 +36,6 @@ function useCarousel() {
 	if (!context) {
 		throw new Error("useCarousel must be used within a <Carousel />");
 	}
-
 	return context;
 }
 
@@ -71,9 +68,7 @@ const Carousel = React.forwardRef<
 		const [canScrollNext, setCanScrollNext] = React.useState(false);
 
 		const onSelect = React.useCallback((api: CarouselApi) => {
-			if (!api) {
-				return;
-			}
+			if (!api) return;
 
 			setCanScrollPrev(api.canScrollPrev());
 			setCanScrollNext(api.canScrollNext());
@@ -99,25 +94,22 @@ const Carousel = React.forwardRef<
 			},
 			[scrollPrev, scrollNext]
 		);
-		// scroll to the specific slide
+
+		// Scroll to the specific slide
 		React.useEffect(() => {
 			if (api && initialSlideIndex !== undefined) {
-				api.scrollTo(initialSlideIndex); // Scroll to the specific slide
+				api.scrollTo(initialSlideIndex);
 			}
 		}, [api, initialSlideIndex]);
 
 		React.useEffect(() => {
-			if (!api || !setApi) {
-				return;
-			}
+			if (!api || !setApi) return;
 
 			setApi(api);
 		}, [api, setApi]);
 
 		React.useEffect(() => {
-			if (!api) {
-				return;
-			}
+			if (!api) return;
 
 			onSelect(api);
 			api.on("reInit", onSelect);
@@ -132,7 +124,7 @@ const Carousel = React.forwardRef<
 			<CarouselContext.Provider
 				value={{
 					carouselRef,
-					api: api,
+					api,
 					opts,
 					orientation:
 						orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
@@ -144,7 +136,8 @@ const Carousel = React.forwardRef<
 			>
 				<div
 					ref={ref}
-					onKeyDownCapture={handleKeyDown}
+					onKeyDownCapture={handleKeyDown} // Handle key events here
+					tabIndex={0} // Ensure the div is focusable
 					className={cn("relative", className)}
 					role='region'
 					aria-roledescription='carousel'
@@ -205,30 +198,42 @@ CarouselItem.displayName = "CarouselItem";
 const CarouselPrevious = React.forwardRef<
 	HTMLButtonElement,
 	React.ComponentProps<typeof Button>
->(({ className, variant = "outline", size = "icon", ...props }, ref) => {
-	const { orientation, scrollPrev, canScrollPrev } = useCarousel();
+>(
+	(
+		{
+			className,
+			variant = "outline",
+			size = "icon",
+			shape = `round`,
+			...props
+		},
+		ref
+	) => {
+		const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
-	return (
-		<Button
-			ref={ref}
-			variant={variant}
-			size={size}
-			className={cn(
-				"absolute  h-8 w-8 rounded-full",
-				orientation === "horizontal"
-					? "-left-12 top-12 -translate-y-1/2"
-					: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
-				className
-			)}
-			disabled={!canScrollPrev}
-			onClick={scrollPrev}
-			{...props}
-		>
-			<ArrowLeft className='h-4 w-4' />
-			<span className='sr-only'>Previous slide</span>
-		</Button>
-	);
-});
+		return (
+			<Button
+				ref={ref}
+				variant={variant}
+				size={size}
+				shape={shape}
+				className={cn(
+					"absolute h-8 w-8 rounded-none rounded-full",
+					orientation === "horizontal"
+						? "-left-12 top-12 -translate-y-1/2"
+						: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+					className
+				)}
+				disabled={!canScrollPrev}
+				onClick={scrollPrev}
+				{...props}
+			>
+				<ArrowLeft className='h-4 w-4' />
+				<span className='sr-only'>Previous slide</span>
+			</Button>
+		);
+	}
+);
 CarouselPrevious.displayName = "CarouselPrevious";
 
 const CarouselNext = React.forwardRef<
@@ -268,3 +273,21 @@ export {
 	CarouselPrevious,
 	CarouselNext,
 };
+function ChevronLeftIcon(props: React.SVGProps<SVGSVGElement>) {
+	return (
+		<svg
+			{...props}
+			xmlns='http://www.w3.org/2000/svg'
+			width='24'
+			height='24'
+			viewBox='0 0 24 24'
+			fill='none'
+			stroke='currentColor'
+			strokeWidth='2'
+			strokeLinecap='round'
+			strokeLinejoin='round'
+		>
+			<path d='m15 18-6-6 6-6' />
+		</svg>
+	);
+}
