@@ -15,5 +15,7 @@ export default function ProjectSingle() {
 		console.error("Project not found");
 		return <div>Project not found</div>;
 	}
-	return <ProjectCarousel setInitalSlideIndex={data.id - 1} />;
+	return <main className='flex min-h-screen flex-col items-center  p-4'>
+		<ProjectCarousel setInitalSlideIndex={data.id - 1} />
+	</main>;
 }

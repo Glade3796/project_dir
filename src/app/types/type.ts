@@ -1,8 +1,11 @@
 export interface ProjectList {
 	id: number;
+	role: string;
+	contributions: string;
 	queryParam: string;
 
 	name: string;
+	blurb: string;
 	description: string;
 	functioning: boolean; // Consider using a more specific type if possible
 	note?: notes[];

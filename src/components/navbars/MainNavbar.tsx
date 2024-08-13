@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { projectList } from "@/app/.data/projectList";
 
 import { ProjectList } from "@/app/types/type";
+// import CyberTreeLogo from "@/assets/CyberTreeLogo";
 
 export function MainNavbar() {
 	const list: ProjectList[] = projectList;
@@ -22,6 +23,8 @@ export function MainNavbar() {
 					className='flex items-center gap-2 font-bold text-lg'
 					prefetch={false}
 				>
+					{/* <CyberTreeLogo /> */}
+
 					{/* <BriefcaseIcon className='h-6 w-6' /> */}
 					<span>Cyber_glade</span>
 				</Link>
