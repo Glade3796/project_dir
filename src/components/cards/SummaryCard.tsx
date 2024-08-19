@@ -8,10 +8,14 @@ import {
 } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-
-export function SummaryCard() {
+import type { ProjectList } from "@/app/types/type";
+interface SumamryCardProps {
+	project: ProjectList;
+}
+export function SummaryCard(props: SumamryCardProps) {
+	function handleCardClick() {}
 	return (
-		<Card className='w-full max-w-md animate-fade-in'>
+		<Card className='w-full max-w-md animate-fade-in cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors'>
 			<CardHeader className='flex items-center gap-4'>
 				<img
 					src='/placeholder.svg'
@@ -34,9 +38,7 @@ export function SummaryCard() {
 					</div>
 					<div className='flex items-center gap-2'>
 						<CalendarDaysIcon className='w-5 h-5 text-muted-foreground' />
-						<span className='text-sm text-muted-foreground'>
-							Last updated: June 15, 2023
-						</span>
+						<span className='text-sm text-muted-foreground'>June 15, 2023</span>
 					</div>
 				</div>
 				<div className='grid gap-2'>
@@ -46,7 +48,7 @@ export function SummaryCard() {
 					</div>
 					<Progress value={85} className='h-2 rounded-full' />
 				</div>
-				<div className='grid gap-2'>
+				{/* <div className='grid gap-2'>
 					<div className='flex items-center justify-between'>
 						<span className='text-sm font-medium'>Description</span>
 					</div>
@@ -54,8 +56,8 @@ export function SummaryCard() {
 						This is a social media app that allows users to connect with
 						friends, share updates, and engage with content.
 					</p>
-				</div>
-				<div className='grid gap-2'>
+				</div> */}
+				{/* <div className='grid gap-2'>
 					<div className='flex items-center justify-between'>
 						<span className='text-sm font-medium'>Technologies</span>
 					</div>
@@ -65,7 +67,7 @@ export function SummaryCard() {
 						<Badge>MongoDB</Badge>
 						<Badge>GraphQL</Badge>
 					</div>
-				</div>
+				</div> */}
 			</CardContent>
 		</Card>
 	);

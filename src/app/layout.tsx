@@ -5,7 +5,7 @@ import { Unbounded as FontSans } from "next/font/google";
 import "./styles/globals.css";
 
 import { cn } from "@/lib/utils";
-import { MainNavbar } from "@/components/MainNavbar";
+import { MainNavbar } from "@/components/navbars/MainNavbar";
 
 const fontSans = FontSans({
 	subsets: ["latin"],

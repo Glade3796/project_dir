@@ -1,8 +1,12 @@
+import { technologyList } from "../.data/filterItems";
 export interface ProjectList {
 	id: number;
+	role: string;
+	contributions: string;
 	queryParam: string;
 
 	name: string;
+	blurb: string;
 	description: string;
 	functioning: boolean; // Consider using a more specific type if possible
 	note?: notes[];
@@ -13,8 +17,10 @@ export interface ProjectList {
 	tech: string[];
 	lastUpdate: string;
 	started: string;
-	completed: string;
+	completed: boolean;
+	completedDate: string;
 	screenshot: string;
+	type: string[];
 }
 type notes = { id: number; title: string; text: string; date?: string };
 
