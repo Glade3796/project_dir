@@ -2,12 +2,21 @@ interface technologyList {}
 export const technologyList = [
 	`React`,
 	`NextJs`,
-	`vite`,
+	`Vite`,
 	`Clerk`,
 	`Radix`,
 	`postgreSQL`,
 	`Express`,
 	`Vercel`,
+	`TS`,
+	`JS`,
+	"HTML",
+	"CSS",
+	"Tailwind",
+	"Node",
+	"Prisma",
+	"OpenAI",
+
 ];
 
 export const typeList = [
@@ -23,6 +32,7 @@ export const typeList = [
 	"API",
 	"Database",
 	"Authentication",
-
+"Freelance",
+"AI",
 	"Other",
 ];

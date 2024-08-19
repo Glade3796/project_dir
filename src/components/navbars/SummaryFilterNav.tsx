@@ -49,7 +49,15 @@ export function SummaryFilterNav() {
 
 	const progressArr = ["0-25", "25-50", "50-75", "75-100"];
 	const dateArr = ["Week", "Month", "Year"];
-
+	function dateText() {
+		if (searchParams.has("update")) {
+			if (searchParams.getAll("update").includes("Recent")) {
+				return "Most Recent";
+			}
+			return `This ${searchParams.get("update")}`;
+		}
+		return "Update";
+	}
 	return (
 		<div className='flex flex-col gap-4 bg-card px-4 py-3 rounded-lg shadow-sm sm:flex-row sm:items-center'>
 			<div className='flex flex-wrap items-center gap-2 sm:flex-1'>

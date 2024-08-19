@@ -20,6 +20,7 @@ import {
 	TooltipContent,
 } from "@/components/ui/tooltip";
 import { useState } from "react";
+import Image from "next/image";
 
 export function ProjectCard(props: { data: ProjectList }) {
 	const router = useRouter();
@@ -66,7 +67,7 @@ export function ProjectCard(props: { data: ProjectList }) {
 				<XIcon className='w-4 h-4' />
 			</Button>
 			<CardHeader className='flex items-center gap-4'>
-				<img
+				<Image
 					src='/placeholder.svg'
 					alt='App Icon'
 					width='48'
@@ -180,7 +181,7 @@ export function ProjectCard(props: { data: ProjectList }) {
 					<div className='flex items-center justify-between'>
 						<span className='text-sm font-medium'>Screenshot</span>
 					</div>
-					<img
+					<Image
 						src={data.screenshot}
 						alt='App Screenshot'
 						width='400'
