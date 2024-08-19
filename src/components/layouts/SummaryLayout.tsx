@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { SummaryCard } from "../cards/SummaryCard";
 import { projectList } from "@/app/.data/projectList";
@@ -5,6 +6,7 @@ import { SummaryFilterNav } from "../navbars/SummaryFilterNav";
 import { useSearchParams, usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Suspense } from "react";
 export function SummaryLayout() {
 	const searchParams = useSearchParams();
 	const pathname = usePathname();
@@ -107,16 +109,21 @@ export function SummaryLayout() {
 		});
 	}
 
+	function SummaryFilterNavFallback() {
+		return <h3>loading FilterNav</h3>;
+	}
 	const filteredAndSortedProjects = sortProjects(applyFilters());
 	const data = projectList;
 	return (
 		<>
-			<SummaryFilterNav />
-
+			<Suspense fallback={<SummaryFilterNavFallback />}>
+				<SummaryFilterNav />
+			</Suspense>
 			<main className='flex min-h-screen flex-col items-center  p-4'>
 				<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
 					{filteredAndSortedProjects.map((project) => (
 						<Link
+							key={project.id}
 							href={{
 								pathname: "/projects",
 								query: { project: project.queryParam },

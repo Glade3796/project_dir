@@ -11,7 +11,6 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { ProjectList } from "@/app/types/type";
-import { Router } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
 	TooltipProvider,

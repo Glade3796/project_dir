@@ -86,7 +86,7 @@ export function MainNavbar() {
 												</Link>
 											</DropdownMenuItem>
 											{list.map((project: ProjectList) => (
-												<DropdownMenuItem>
+												<DropdownMenuItem key={project.id}>
 													<Link
 														href={{
 															pathname: "/projects",
@@ -159,7 +159,7 @@ export function MainNavbar() {
 									</Link>
 								</DropdownMenuItem>
 								{list.map((project: ProjectList) => (
-									<DropdownMenuItem>
+									<DropdownMenuItem key={project.id}>
 										<Link
 											href={{
 												pathname: "/projects",
