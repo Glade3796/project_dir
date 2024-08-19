@@ -1,3 +1,4 @@
+import { technologyList } from "../.data/filterItems";
 export interface ProjectList {
 	id: number;
 	role: string;
@@ -16,8 +17,10 @@ export interface ProjectList {
 	tech: string[];
 	lastUpdate: string;
 	started: string;
-	completed: string;
+	completed: boolean;
+	completedDate: string;
 	screenshot: string;
+	type: string[];
 }
 type notes = { id: number; title: string; text: string; date?: string };
 
