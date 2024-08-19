@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { SummaryCard } from "../cards/SummaryCard";
 import { projectList } from "@/app/.data/projectList";
