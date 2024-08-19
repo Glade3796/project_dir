@@ -117,6 +117,7 @@ export function SummaryLayout() {
 				<div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
 					{filteredAndSortedProjects.map((project) => (
 						<Link
+							key={project.id}
 							href={{
 								pathname: "/projects",
 								query: { project: project.queryParam },
