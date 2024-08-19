@@ -9,15 +9,7 @@ export function SummaryLayout() {
 	const searchParams = useSearchParams();
 	const pathname = usePathname();
 	const router = useRouter();
-	function dateText() {
-		if (searchParams.has("update")) {
-			if (searchParams.getAll("update").includes("Recent")) {
-				return "Most Recent";
-			}
-			return `This ${searchParams.get("update")}`;
-		}
-		return "Update";
-	}
+
 	const calculateDateRange = (filter: string) => {
 		const now = new Date();
 		let start, end;
@@ -33,7 +25,6 @@ export function SummaryLayout() {
 				start = new Date(now.setFullYear(now.getFullYear() - 1));
 				break;
 			case "Recent":
-
 				return { recent: true };
 			default:
 				start = new Date(0); // Set to epoch for no filtering.
@@ -44,13 +35,13 @@ export function SummaryLayout() {
 	function applyFilters() {
 		let filteredProjects = projectList;
 
-		if (searchParams.has("completed")) {
+		if (searchParams.get("completed") === "true") {
 			filteredProjects = filteredProjects.filter(
 				(project) => String(project.completed) === searchParams.get("completed")
 			);
 		}
 
-		if (searchParams.has("live")) {
+		if (searchParams.get("live") === "true") {
 			filteredProjects = filteredProjects.filter(
 				(project) => String(project.functioning) === searchParams.get("live")
 			);

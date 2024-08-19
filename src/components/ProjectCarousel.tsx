@@ -57,7 +57,7 @@ export function ProjectCarousel(props: ProjectCarouselProps) {
 			<CarouselNext />
 			<CarouselContent>
 				{data.map((project) => (
-					<CarouselItem>
+					<CarouselItem key={`project` + project.id}>
 						<ProjectCard data={project} />
 					</CarouselItem>
 				))}

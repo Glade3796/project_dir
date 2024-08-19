@@ -9,15 +9,18 @@ import {
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import type { ProjectList } from "@/app/types/type";
+import Image from "next/image";
 interface SumamryCardProps {
 	project: ProjectList;
 }
+
 export function SummaryCard(props: SumamryCardProps) {
+	const { project } = props;
 	function handleCardClick() {}
 	return (
 		<Card className='w-full max-w-md animate-fade-in cursor-pointer hover:bg-accent hover:text-accent-foreground transition-colors'>
 			<CardHeader className='flex items-center gap-4'>
-				<img
+				<Image
 					src='/placeholder.svg'
 					alt='App Icon'
 					width='48'
@@ -25,28 +28,40 @@ export function SummaryCard(props: SumamryCardProps) {
 					className='rounded-full'
 					style={{ aspectRatio: "48/48", objectFit: "cover" }}
 				/>
-				<div className='space-y-1'>
-					<CardTitle>Social Media App</CardTitle>
-					<CardDescription>A modern social media platform</CardDescription>
+				<div className='space-y-1 w-full text-center'>
+					<CardTitle>{project.name}</CardTitle>
+					<CardDescription>{project.blurb}</CardDescription>
 				</div>
 			</CardHeader>
 			<CardContent className='grid gap-4'>
 				<div className='flex items-center justify-between'>
-					<div className='flex items-center gap-2'>
-						<CircleCheckIcon className='w-5 h-5 text-green-500' />
-						<span className='text-sm font-medium'>Live</span>
-					</div>
+					{project.functioning ? (
+						<div className='flex items-center gap-2'>
+							<CircleCheckIcon className='w-5 h-5 text-green' />
+							<span className='text-sm font-medium text-green'>Live</span>
+						</div>
+					) : (
+						<div className='flex items-center gap-2 '>
+							<CircleOffIcon className='w-5 h-5 ' />
+							<span className='!important text-sm font-medium text-red '>
+								Down
+							</span>
+						</div>
+					)}
 					<div className='flex items-center gap-2'>
 						<CalendarDaysIcon className='w-5 h-5 text-muted-foreground' />
-						<span className='text-sm text-muted-foreground'>June 15, 2023</span>
+
+						<span className='text-sm text-muted-foreground'>
+							{project.lastUpdate}
+						</span>
 					</div>
 				</div>
 				<div className='grid gap-2'>
 					<div className='flex items-center justify-between'>
 						<span className='text-sm font-medium'>Progress</span>
-						<span className='text-sm font-medium'>85%</span>
+						<span className='text-sm font-medium'>{project.progress}%</span>
 					</div>
-					<Progress value={85} className='h-2 rounded-full' />
+					<Progress value={project.progress} className='h-2 rounded-full' />
 				</div>
 				{/* <div className='grid gap-2'>
 					<div className='flex items-center justify-between'>
@@ -117,6 +132,27 @@ function CircleCheckIcon(props: React.SVGProps<SVGSVGElement>) {
 		>
 			<circle cx='12' cy='12' r='10' />
 			<path d='m9 12 2 2 4-4' />
+		</svg>
+	);
+}
+
+function CircleOffIcon(props: React.SVGProps<SVGSVGElement>) {
+	return (
+		<svg
+			{...props}
+			xmlns='http://www.w3.org/2000/svg'
+			width='24'
+			height='24'
+			viewBox='0 0 24 24'
+			fill='none'
+			stroke='red'
+			stroke-width='2'
+			stroke-linecap='round'
+			stroke-linejoin='round'
+		>
+			<path d='m2 2 20 20' />
+			<path d='M8.35 2.69A10 10 0 0 1 21.3 15.65' />
+			<path d='M19.08 19.08A10 10 0 1 1 4.92 4.92' />
 		</svg>
 	);
 }
