@@ -284,7 +284,9 @@ export default function About() {
 								</div>
 							</div>
 							<div className='grid gap-2'>
-								<h2 className='text-xl font-semibold'>Projects</h2>
+								<Link href={"/projects"}>
+									<h2 className='text-xl font-semibold'>Projects</h2>
+								</Link>
 								<div className='grid gap-4'>
 									<Card>
 										<CardHeader>
@@ -329,7 +331,7 @@ export default function About() {
 						<Button variant='link' onClick={() => setShowCV(false)}>
 							Back to About
 						</Button>
-						<Button>Simplify to One-Page CV</Button>
+						{/* <Button>Simplify to One-Page CV</Button> */}
 					</div>
 				</div>
 			)}
