@@ -103,7 +103,7 @@ export default function About() {
 										<CardContent>
 											<p className='text-muted-foreground'>
 												Delivered wilderness courses. Managed a team delivering
-												high quality outdoor education to under 18's.
+												high quality outdoor education to under 18&apos;s.
 											</p>
 										</CardContent>
 										<CardFooter>
