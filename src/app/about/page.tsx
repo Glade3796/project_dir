@@ -23,11 +23,11 @@ export default function About() {
 						<div className='grid gap-2'>
 							<h1 className='text-3xl font-bold'>About Me</h1>
 							<p className='text-muted-foreground'>
-								Hi, I'm Aisling (Ash-ling), a versatile and highly motivated
-								Full Stack Developer with a background in the British Army. I'm
-								passionate about delivering high-quality web applications and
-								always strive for perfection in my work. My expertise includes
-								Next.js, React, Express.js, and more.
+								Hi, I&apos;m Aisling (Ash-ling), a versatile and highly
+								motivated Full Stack Developer with a background in the British
+								Army. I&apos;m passionate about delivering high-quality web
+								applications and always strive for perfection in my work. My
+								expertise includes Next.js, React, Express.js, and more.
 							</p>
 						</div>
 						<div className='grid gap-2'>
