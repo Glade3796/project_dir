@@ -99,13 +99,23 @@ export function SummaryLayout() {
 
 	function sortProjects(projects: any[]) {
 		const sortParam = searchParams.get("sort");
+
 		return projects.sort((a, b) => {
-			if (sortParam === "asc") {
-				return new Date(a.update).getTime() - new Date(b.update).getTime();
-			} else if (sortParam === "desc") {
-				return new Date(b.update).getTime() - new Date(a.update).getTime();
+			const dateA = new Date(a.lastUpdate).getTime();
+			const dateB = new Date(b.lastUpdate).getTime();
+
+			// Validate dates
+			if (isNaN(dateA) || isNaN(dateB)) {
+				console.error("Invalid date found:", a.lastUpdate, b.lastUpdate);
+				return 0; // Treat invalid dates as equal
 			}
-			return 0; // Default, no sorting
+
+			if (sortParam === "asc") {
+				return dateA - dateB;
+			} else if (sortParam === "desc") {
+				return dateB - dateA;
+			}
+			return 0;
 		});
 	}
 
