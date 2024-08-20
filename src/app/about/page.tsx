@@ -1,4 +1,5 @@
 "use client";
+import { badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -8,8 +9,9 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Badge, Link } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function About() {
 	const [showCV, setShowCV] = useState(false);
@@ -21,11 +23,11 @@ export default function About() {
 						<div className='grid gap-2'>
 							<h1 className='text-3xl font-bold'>About Me</h1>
 							<p className='text-muted-foreground'>
-								Hi, I'm John Doe, a passionate software engineer with a love for
-								building innovative and user-friendly applications. With a
-								strong background in full-stack development, I've honed my
-								skills in a variety of technologies and frameworks, always
-								striving to stay up-to-date with the latest industry trends.
+								Hi, I'm Aisling (Ash-ling), a versatile and highly motivated
+								Full Stack Developer with a background in the British Army. I'm
+								passionate about delivering high-quality web applications and
+								always strive for perfection in my work. My expertise includes
+								Next.js, React, Express.js, and more.
 							</p>
 						</div>
 						<div className='grid gap-2'>
@@ -33,19 +35,29 @@ export default function About() {
 							<div className='grid sm:grid-cols-2 gap-4'>
 								<div className='grid gap-1'>
 									<span className='font-medium'>Location:</span>
-									<span>San Francisco, CA</span>
+									<span>Cambridge, United Kingdom</span>
 								</div>
 								<div className='grid gap-1'>
 									<span className='font-medium'>Experience:</span>
-									<span>5+ years</span>
+									<span>Freelance Tech Dev: 3+ years</span>
 								</div>
 								<div className='grid gap-1'>
 									<span className='font-medium'>Education:</span>
-									<span>Bachelor's in Computer Science</span>
+									<span>
+										<ul>
+											<li>- TechEducators</li>
+											<li>- Anglia Ruskin University</li>
+											<li>- British Army</li>
+										</ul>
+									</span>
 								</div>
 								<div className='grid gap-1'>
 									<span className='font-medium'>Interests:</span>
-									<span>Hiking, reading, and learning new technologies</span>
+									<ul>
+										<li>- Outdoor Activities</li>
+										<li>- Technology</li>
+										<li>- Mental Heallth Advocacy</li>
+									</ul>
 								</div>
 							</div>
 						</div>
@@ -57,8 +69,8 @@ export default function About() {
 				<div className='grid gap-8'>
 					<div className='grid gap-4'>
 						<div className='grid gap-2'>
-							<h1 className='text-3xl font-bold'>John Doe</h1>
-							<p className='text-muted-foreground'>Software Engineer</p>
+							<h1 className='text-3xl font-bold'>Aisling Hemlock</h1>
+							<p className='text-muted-foreground'>Full Stack Developer</p>
 						</div>
 						<div className='grid gap-4'>
 							<div className='grid gap-2'>
@@ -66,38 +78,100 @@ export default function About() {
 								<div className='grid gap-4'>
 									<Card>
 										<CardHeader>
-											<CardTitle>Software Engineer</CardTitle>
-											<CardDescription>Acme Inc.</CardDescription>
+											<CardTitle>Freelance Full-Stack Developer</CardTitle>
+											<CardDescription>Cyber_glade</CardDescription>
 										</CardHeader>
 										<CardContent>
 											<p className='text-muted-foreground'>
-												Developed and maintained full-stack web applications
-												using React, Node.js, and PostgreSQL. Collaborated with
-												cross-functional teams to deliver high-quality software
-												solutions.
+												Designed and implemented dynamic web applications using
+												Next.js, React, Node.js, and Express.js. Managed full
+												lifecycle projects, ensuring high-quality, maintainable,
+												and scalable code.
 											</p>
 										</CardContent>
 										<CardFooter>
 											<span className='text-xs text-muted-foreground'>
-												2020 - Present
+												Dec 2023 – Present
 											</span>
 										</CardFooter>
 									</Card>
 									<Card>
 										<CardHeader>
-											<CardTitle>Intern</CardTitle>
-											<CardDescription>Widgets Inc.</CardDescription>
+											<CardTitle>Camp Leader</CardTitle>
+											<CardDescription>The Bushcraft Company</CardDescription>
 										</CardHeader>
 										<CardContent>
 											<p className='text-muted-foreground'>
-												Contributed to the development of a mobile app using
-												React Native and Firebase. Gained experience in agile
-												software development practices.
+												Delivered wilderness courses. Managed a team delivering
+												high quality outdoor education to under 18's.
 											</p>
 										</CardContent>
 										<CardFooter>
 											<span className='text-xs text-muted-foreground'>
-												2019 - 2020
+												May 2019 – Aug 2021
+											</span>
+										</CardFooter>
+									</Card>
+									<Card>
+										<CardHeader>
+											<CardTitle>Student Nurse</CardTitle>
+											<CardDescription>
+												Anglia Ruskin University
+											</CardDescription>
+										</CardHeader>
+										<CardContent>
+											<p className='text-muted-foreground'>
+												Completed academic studies and placements, managing
+												complex information to create care plans and referrals
+												while maintaining high standards.
+											</p>
+										</CardContent>
+										<CardFooter>
+											<span className='text-xs text-muted-foreground'>
+												May 2017 – Sep 2020
+											</span>
+										</CardFooter>
+									</Card>
+									<Card>
+										<CardHeader>
+											<CardTitle>
+												Bank Healthcare Assistant & Assistant Pharmacy Technical
+												Officer
+											</CardTitle>
+											<CardDescription>
+												Cambridge University Hospitals NHS Trust, Ipswich
+												Hospital NHS Trust
+											</CardDescription>
+										</CardHeader>
+										<CardContent>
+											<p className='text-muted-foreground'>
+												Flexible healthcare roles in diverse settings, including
+												emergency departments and critical care, while managing
+												pharmaceutical interventions and verifying medications.
+											</p>
+										</CardContent>
+										<CardFooter>
+											<span className='text-xs text-muted-foreground'>
+												Sep 2006 – Sep 2020
+											</span>
+										</CardFooter>
+									</Card>
+									<Card>
+										<CardHeader>
+											<CardTitle>Junior Manager (JNCO)</CardTitle>
+											<CardDescription>British Army</CardDescription>
+										</CardHeader>
+										<CardContent>
+											<p className='text-muted-foreground'>
+												Managed teams in challenging environments, deployed
+												sophisticated technology, and completed two operational
+												tours as an Intelligence, Surveillance, and Target
+												Acquisition commander.
+											</p>
+										</CardContent>
+										<CardFooter>
+											<span className='text-xs text-muted-foreground'>
+												Sep 2006 – Sep 2012
 											</span>
 										</CardFooter>
 									</Card>
@@ -108,20 +182,83 @@ export default function About() {
 								<div className='grid gap-4'>
 									<Card>
 										<CardHeader>
-											<CardTitle>Bachelor's in Computer Science</CardTitle>
-											<CardDescription>
-												University of California, Berkeley
-											</CardDescription>
+											<CardTitle>Software Development</CardTitle>
+											<CardDescription>TechEducators</CardDescription>
 										</CardHeader>
 										<CardContent>
 											<p className='text-muted-foreground'>
-												Graduated with a focus on software engineering and
-												algorithms.
+												An intensive professional-level software development
+												course focusing on server and client-side scripting for
+												dynamic web applications.
 											</p>
 										</CardContent>
 										<CardFooter>
 											<span className='text-xs text-muted-foreground'>
-												2015 - 2019
+												Sep 2023 – Feb 2024
+											</span>
+										</CardFooter>
+									</Card>
+									<Card>
+										<CardHeader>
+											<CardTitle>
+												Understanding Mental Health First Aid and Mental Health
+												Advocacy
+											</CardTitle>
+											<CardDescription></CardDescription>
+										</CardHeader>
+
+										<CardContent>
+											<p className='text-muted-foreground'>
+												Developing and deploying tactics to support mental
+												health in the workplace and community.
+											</p>
+										</CardContent>
+										<CardFooter>
+											<span className='text-xs text-muted-foreground'>
+												2022
+											</span>
+										</CardFooter>
+									</Card>
+
+									<Card>
+										<CardHeader>
+											<CardTitle>
+												BTEC Level 3 in Professional Competence for IT and
+												Telecoms Professionals
+											</CardTitle>
+											<CardDescription></CardDescription>
+										</CardHeader>
+
+										<CardContent>
+											<p className='text-muted-foreground'>
+												Obtained in 2011, this qualification is focused on IT
+												and telecoms professional competencies.
+											</p>
+										</CardContent>
+										<CardFooter>
+											<span className='text-xs text-muted-foreground'>
+												2011
+											</span>
+										</CardFooter>
+									</Card>
+									<Card>
+										<CardHeader>
+											<CardTitle>
+												BTEC Level 3 in Professional Competence for IT and
+												Telecoms Professionals
+											</CardTitle>
+											<CardDescription></CardDescription>
+										</CardHeader>
+
+										<CardContent>
+											<p className='text-muted-foreground'>
+												Obtained in 2011, this qualification is focused on IT
+												and telecoms professional competencies.
+											</p>
+										</CardContent>
+										<CardFooter>
+											<span className='text-xs text-muted-foreground'>
+												2011
 											</span>
 										</CardFooter>
 									</Card>
@@ -130,15 +267,20 @@ export default function About() {
 							<div className='grid gap-2'>
 								<h2 className='text-xl font-semibold'>Skills</h2>
 								<div className='flex flex-wrap gap-2'>
+									<Badge>Next.js</Badge>
 									<Badge>React</Badge>
+									<Badge>Express.js</Badge>
 									<Badge>Node.js</Badge>
-									<Badge>PostgreSQL</Badge>
-									<Badge>Git</Badge>
-									<Badge>Agile</Badge>
 									<Badge>JavaScript</Badge>
 									<Badge>TypeScript</Badge>
-									<Badge>CSS</Badge>
-									<Badge>HTML</Badge>
+									<Badge>Git</Badge>
+									<Badge>SQL</Badge>
+									<Badge>PRISMA</Badge>
+									<Badge>PG</Badge>
+									<Badge>Docker</Badge>
+									<Badge>AGILE/SCRUM</Badge>
+									<Badge>Project Management</Badge>
+									<Badge>Relationship-Building</Badge>
 								</div>
 							</div>
 							<div className='grid gap-2'>
@@ -146,42 +288,35 @@ export default function About() {
 								<div className='grid gap-4'>
 									<Card>
 										<CardHeader>
-											<CardTitle>Personal Portfolio</CardTitle>
-											<CardDescription>
-												A modern and responsive portfolio website
-											</CardDescription>
+											<CardTitle>
+												Next.js Application: Social Media App
+											</CardTitle>
 										</CardHeader>
 										<CardContent>
 											<p className='text-muted-foreground'>
-												Designed and developed a personal portfolio website
-												using React, Next.js, and Tailwind CSS. Showcased my
-												work and provided information about my background and
-												skills.
+												A dynamic social media application built using Next.js,
+												demonstrating my expertise in creating SSR and SPA
+												applications.
 											</p>
 										</CardContent>
 										<CardFooter>
-											<Link href='#' className='text-primary'>
+											<Link href='#' className='text-primary' prefetch={false}>
 												View Project
 											</Link>
 										</CardFooter>
 									</Card>
 									<Card>
 										<CardHeader>
-											<CardTitle>Todo App</CardTitle>
-											<CardDescription>
-												A simple and intuitive task management application
-											</CardDescription>
+											<CardTitle>Full-stack React Application: Forum</CardTitle>
 										</CardHeader>
 										<CardContent>
 											<p className='text-muted-foreground'>
-												Built a Todo application using React, Redux, and
-												Firebase. Implemented features like task creation,
-												completion, and deletion, as well as user
-												authentication.
+												An interactive forum application built with React,
+												showcasing my full-stack development skills.
 											</p>
 										</CardContent>
 										<CardFooter>
-											<Link href='#' className='text-primary'>
+											<Link href='#' className='text-primary' prefetch={false}>
 												View Project
 											</Link>
 										</CardFooter>
